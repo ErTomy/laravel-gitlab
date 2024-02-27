@@ -1,0 +1,18 @@
+{
+    "name": "ertomy/gitlab",
+    "description": "paquete para despliegues desde repositorio gitlab",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tomás",
+            "email": "ertomy@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Ertomy\\Gitlab\\": "src"
+        }
+    }
+   
+}
