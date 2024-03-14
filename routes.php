@@ -13,4 +13,6 @@ Route::group(['prefix' => 'gitlabdeploy',  'middleware' => ['web', 'auth', AuthD
     Route::post('updates', 'Ertomy\Gitlab\Controllers\DeployController@update');
     Route::post('updates/end', 'Ertomy\Gitlab\Controllers\DeployController@updateCommit');
 
+    Route::get('/migrate', 'Ertomy\Gitlab\Controllers\DeployController@migrate')->name('gitdeploy.migrate');
+    Route::post('/migrate', 'Ertomy\Gitlab\Controllers\DeployController@migrateExecute')->name('gitdeploy.migrate.execute');
 });

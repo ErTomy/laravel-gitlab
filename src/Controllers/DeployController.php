@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Ertomy\Gitlab\Models\Deploy;
 use Ertomy\Gitlab\Requests\UpdateRequest;
 
+use Illuminate\Support\Facades\Artisan;
+use DB;
+
 class DeployController extends Controller
 {
 
@@ -60,17 +63,30 @@ class DeployController extends Controller
 
 
     public function logs(){
-
         $deploys = Deploy::with('user')->orderBy('created_at', 'desc')->get();
-
         return view('gitdeploy::logs', compact('deploys'));
-
     }
 
    
 
 
+    public function migrate(){
+        $migrations = DB::table('migrations')->get();
+        return view('gitdeploy::migrate', compact('migrations'));
+    }
 
+
+    public function migrateExecute(Request $request){
+        
+        // Ejecutar el comando de migración
+        Artisan::call('migrate');
+        
+        // Opcional: obtener la salida del comando
+        $output = Artisan::output();
+
+        return redirect()->route('gitdeploy.migrate')->with('message', $output);
+
+    }
     
 
 

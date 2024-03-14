@@ -34,6 +34,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{route('gitdeploy.logs')}}">Ver log de subidas</a>
               </li>                                        
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('gitdeploy.migrate')}}">Migraciones</a>
+              </li>                                        
             </ul>
             
           </div>

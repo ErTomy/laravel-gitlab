@@ -21,12 +21,6 @@ Después instalar mediante el comando:
 composer require ertomy/gitlab
 ```
 
-Hacemos la migración para que cree la tabla donde almacenará los despliegues realizados:
-
-```sh  
-php artisan migrate
-```
-
 En el fichero `.env` deberemos añadir los siguientes parámetros;
 
 - GITLAB_TOKEN que es el token que obtenemos desde Gitlab para poder hacer llamadas a su API
@@ -34,17 +28,25 @@ En el fichero `.env` deberemos añadir los siguientes parámetros;
 - GITLAB_BRANCH rama a desplegar, si estamos en entorno de test, producción, etc
 - GITLAB_DEPLOY_USERS_ID listado de usuarios de la tabla users que pueden usar el panel de despliegues (identificadores separados por comas)
 
-Con esto el paquete ya está instalado, ahora lo que debemos es hacer referencia al service provider en el fichero `config\app.php` añadiendolo al array de providers:
+Referenciamos el service provider en el fichero `config\app.php` añadiendolo al array de providers:
 
 ```php
 Ertomy\Authlog\Ertomy\Gitlab\GitDeployServiceProvider::class,
 ```
 
-Y por ultimo deberemos publicar los assets:
+Publicamos los assets:
 
 ```sh  
 php artisan vendor:publish --provider="Ertomy\Gitlab\GitDeployServiceProvider"
 ```
+
+Y por ultimo corremos la migración para que cree la tabla donde almacenará los despliegues realizados:
+
+```sh  
+php artisan migrate
+```
+
+
 
 ### Modo de empleo
 
