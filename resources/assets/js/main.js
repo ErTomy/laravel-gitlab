@@ -19,7 +19,7 @@ $(function () {
 
         $('#listado ul li').each(function (index) {
 
-            let status = $('#listado ul li:eq('+index+') label').text();
+            let status = $('#listado ul li:eq('+index+') span').text();
             $('#listado ul li:eq('+index+') span').addClass('procesing')
                                                   .html('<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>');
             $.ajax({

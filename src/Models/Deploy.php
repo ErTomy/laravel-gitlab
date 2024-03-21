@@ -77,12 +77,19 @@
 
 
         public function downloadFile($file){
+            
+            $directory = dirname(base_path($file));
+            if (!file_exists($directory)) {
+                mkdir($directory, 0755, true);        
+            }
 
             $url = config('gitdeploy.base_url').config('gitdeploy.repository').'/repository/files/'.urlencode($file).'/raw?ref='.config('gitdeploy.branch');            
             $response = Http::withHeaders([
                 'accept' => 'application/octet-stream',
                 'PRIVATE-TOKEN' => config('gitdeploy.token')
             ])->sink(base_path($file))->get($url);
+
+            return $response->status() == 200 ? true : false;    
         }
 
         
